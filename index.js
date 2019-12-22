@@ -22,8 +22,9 @@ app.post("/api/get_distance_and_time", (req, res) => {
 
   //The distance was calculates using Haversine formula
   //This is because Google Maps Api does not provide distance over the sea
-  function distance(lat1, lon1, lat2, lon2, units) {
+  function getDistance(lat1, lon1, lat2, lon2, units) {
     let unit;
+    let distance;
     let value;
     var R = 6371; // Radius of the earth in km
 
@@ -79,7 +80,6 @@ app.post("/api/get_distance_and_time", (req, res) => {
     console.log(error);
   }
 
-  //get timezone when give latitude and longitude
   function fetchTimeZone(lat, lng, timestamp) {
     let url = `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=API_KEY`;
     return axios
@@ -105,7 +105,7 @@ app.post("/api/get_distance_and_time", (req, res) => {
     let endCountry = await fetchCountry(end.lat, end.lng);
     let startTimeZone = await fetchTimeZone(start.lat, start.lng, timestamp);
     let endTimeZone = await fetchTimeZone(end.lat, end.lng, timestamp);
-    let distance = distance(start.lat, start.lng, end.lat, end.lng, units);
+    let distance = getDistance(start.lat, start.lng, end.lat, end.lng, units);
     let timediff = getTimeDifference(startTimeZone, endTimeZone);
 
     let payload = {
