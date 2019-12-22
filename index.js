@@ -79,6 +79,7 @@ app.post("/api/get_distance_and_time", (req, res) => {
     console.log(error);
   }
 
+  //get timezone when give latitude and longitude
   function fetchTimeZone(lat, lng, timestamp) {
     let url = `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=API_KEY`;
     return axios
