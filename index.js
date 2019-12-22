@@ -58,7 +58,7 @@ app.post("/api/get_distance_and_time", (req, res) => {
 
   //get country name when give latitude and longitude
   function fetchCountry(lat, lng) {
-    let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=false&key=AIzaSyAC7rkYsFN4J1SCFCxHmahu2El2AlfL_WU`;
+    let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=false&key=API_KEY`;
     return axios
       .get(url)
       .then(handleFetchCountryResponse)
@@ -80,7 +80,7 @@ app.post("/api/get_distance_and_time", (req, res) => {
   }
 
   function fetchTimeZone(lat, lng, timestamp) {
-    let url = `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=AIzaSyAC7rkYsFN4J1SCFCxHmahu2El2AlfL_WU`;
+    let url = `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=API_KEY`;
     return axios
       .get(url)
       .then(fetchTimeZoneResponse)
